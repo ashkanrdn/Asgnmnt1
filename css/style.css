@@ -6,9 +6,8 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0px;
     padding: 0px;
-    background-image: url("./topography.png");
+    background-image: url('/img/BG.png');
     background-blend-mode: soft-light;
-    ba
 }
 
 
@@ -23,7 +22,7 @@ body {
 
 .navigation-bar {
     background-color: black;
-    background-image: url("./headerpic.jpg");
+    background-image: url("/img/headerpic.jpg");
     background-size: 100%;
     background-position: bottom;
     height: 100%;
@@ -218,15 +217,15 @@ body {
 /* ICON */
 
 .instagram {
-    background-image: url("./inst.png");
+    background-image: url("/img/inst.png");
 }
 
 .youtube {
-    background-image: url("./yt.png");
+    background-image: url("/img/yt.png");
 }
 
 .facebook {
-    background-image: url("./fb.png");
+    background-image: url("/img/fb.png");
 }
 
 
