@@ -1,9 +1,21 @@
 const http = require('http');
 const fs = require('fs');
-const { RSA_NO_PADDING } = require('constants');
+var _ = require('lodash');
+
 
 const server = http.createServer((req, res) => {
-    console.log(req.url, req.method);
+    //loadash
+
+    const num = _.random(0, 20);
+    console.log(num);
+    const greet = _.once(() => {
+
+
+        console.log("Hello!");
+
+    });
+    greet();
+    greet();
 
     //Set Header
     res.setHeader('Content-Type', 'text/plain');
@@ -16,6 +28,7 @@ const server = http.createServer((req, res) => {
         case '/':
             path += '/index.html';
             res.statusCode = 200;
+
             break;
         case '/connections':
             path += '/connections1.html';
