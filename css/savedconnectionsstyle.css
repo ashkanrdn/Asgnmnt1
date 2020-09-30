@@ -1,0 +1,66 @@
+   .body {
+       display: flex;
+       justify-content: center;
+   }
+   
+   .detailHolder {
+       display: flex;
+       justify-content: center;
+       width: 50%;
+       height: 400px;
+   }
+   
+   .tables {
+       align-self: center;
+       text-align: center;
+       border-collapse: collapse;
+       width: 100%;
+       vertical-align: center;
+   }
+   
+   th,
+   td {
+       padding: 10px;
+       background-color: #8a8a8a;
+   }
+   
+   th {
+       background-color: rgb(46, 79, 100);
+       color: white;
+       border-bottom: solid 2px white;
+   }
+   
+   td {
+       border: 1px solid rgb(121, 121, 121);
+   }
+   
+   button {
+       text-align: center;
+       text-decoration: none;
+       display: inline-block;
+       font-size: 16px;
+       border: none;
+       box-shadow: gray 0px 0px 1px;
+       padding: 8px 16px;
+       margin: 5px;
+       border-radius: 5px;
+       transition-duration: 0.1s;
+   }
+   
+   .update {
+       background-color: rgb(145, 145, 145);
+   }
+   
+   .delete {
+       background-color: rgb(167, 167, 167);
+   }
+   
+   .going {
+       background-color: rgb(8, 133, 64);
+   }
+   
+   button:hover {
+       border: white solid 1px;
+       box-shadow: gray 0px 0px 10px;
+       /* Green */
+   }
