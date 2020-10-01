@@ -21,7 +21,6 @@ body {
 }
 
 .navigation-bar {
-    background-color: black;
     background-image: url("/img/headerpic.jpg");
     background-size: 100%;
     background-position: bottom;
@@ -49,7 +48,6 @@ body {
     margin: 0px;
     vertical-align: top;
     text-align: right;
-    background-color: rgba(0, 47, 255, 0.507);
 }
 
 .navigation-bar li {
@@ -92,14 +90,26 @@ body {
 .page-name {
     margin-left: 0px;
     height: 60px;
+    position: relative;
+    top: -10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.page-name ul {
+    padding: 0px;
+}
+
+.page-name li {
+    padding: 5px;
+    text-align: center;
+    font: bold;
+    background-color: rgba(110, 110, 110, 0.521)
 }
 
 .page-name h1 {
-    line-height: 60px;
-    margin: auto;
-    padding-left: 20px;
-    text-align: left;
-    background-color: rgba(0, 47, 255, 0.507);
+    margin-left: 20px;
 }
 
 
