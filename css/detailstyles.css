@@ -68,11 +68,17 @@
         text-decoration: none;
         color: white;
         border: none;
+        padding: 8px;
+        border-radius: 5px;
     }
     
     .buttons li {
         list-style-type: none;
         display: inline;
+        font: 18px Arial;
+        text-decoration: none;
+        color: #333333;
+        padding: 18px;
     }
     
     .yes {
