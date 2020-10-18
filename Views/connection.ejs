@@ -1,143 +1,71 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include('./partials/head.ejs') %>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/detailstyles.css">
 
-    <title> DETAIL</title>
-</head>
+    <body>
+        <!-- ```````````````````````HEADER```````````````````````  -->
 
-<body>
 
-    <!-- ```````````````````````HEADER```````````````````````  -->
+        <%- include('./partials/header.ejs') %>
 
-    <header class="header">
-        <div class="navigation-bar">
-            <div id="navigation-container">
-                <img src="/img/LOGO.png" alt="logo">
-                <ul>
-                    <li><a href="#">Start a new connection</a></li>
-                    <li><a href="#">Login</a></li>
-                    <li><a href="#">Signup</a></li>
-                </ul>
-            </div>
-            <div class="site-name-holder">
-                <h1 class="site-name">Niner Design Week</h1>
 
-            </div>
-            <section class="page-name">
-                <h1>CONNECTIONS DETAILS</h1>
+            <!-- ```````````````````````BODY```````````````````````  -->
 
-                <ul>
-                    <li><a href="/Views/index.html">HOME</a> </li>
-                    <li><a href="/Views/connections.html">CONNECTIONS</a> </li>
-                    <li><a href="/Views/connection.html">DETAILS</a> </li>
-                    <li><a href="/Views/SavedConnections.html">SAVED</a> </li>
 
-                </ul>
 
+            <section class="body">
+                <section class="detailHolder">
+
+                    <div class="activitydetail">
+                        <h1> The Paradigm Shift of Creativity Concept</h1>
+                        <div class="instructions ">
+                            <figure>
+
+                                <img class="fig-img" src="./public/img/lamps.jpg" alt="lamps">
+
+
+                            </figure>
+                            <ul>
+                                <li>Host : Famous Artist</li>
+                                <li>Time : Thursday , June 29,2020</li>
+                                <li>5:30pm - 6:30pm</li>
+                                <li>Student Union</li>
+                            </ul>
+                        </div>
+                        <div class="time">
+                            <h1>Details:</h1>
+                            <p>Lo, quidem quaerat temporibus dignissimos ipsa provident<br>quidem quaerat temporibus dignissimos ipsa provident.
+                            </p>
+                        </div>
+
+
+
+                    </div>
+
+                    <div class="attending">
+                        <h1>ARE YOU GOING?</h1>
+                        <ul class="buttons">
+                            <li>
+
+                                <a class="yes" href="./savedconnections.html">YES</a>
+                            </li>
+                            <li>
+                                <a class="no" href="./SavedConnections.html">NO</a>
+                            </li>
+                            <li>
+                                <a class="maybe" href="./SavedConnections.html">MAYBE</a>
+                            </li>
+                        </ul>
+
+                    </div>
+
+
+                </section>
             </section>
-        </div>
-    </header>
 
+            <!-- ```````````````````````FOOTER```````````````````````  -->
 
-    <!-- ```````````````````````BODY```````````````````````  -->
+            <%- include('./partials/footer.ejs')  %>
 
+    </body>
 
-
-    <section class="body">
-        <section class="detailHolder">
-
-            <div class="activitydetail">
-                <h1> The Paradigm Shift of Creativity Concept</h1>
-                <div class="instructions ">
-                    <figure>
-
-                        <img class="fig-img" src="/img/lamps.jpg" alt="lamps">
-
-
-                    </figure>
-                    <ul>
-                        <li>Host : Famous Artist</li>
-                        <li>Time : Thursday , June 29,2020</li>
-                        <li>5:30pm - 6:30pm</li>
-                        <li>Student Union</li>
-                    </ul>
-                </div>
-                <div class="time">
-                    <h1>Details:</h1>
-                    <p>Lo, quidem quaerat temporibus dignissimos ipsa provident<br>quidem quaerat temporibus dignissimos ipsa provident.
-                    </p>
-                </div>
-
-
-
-            </div>
-
-            <div class="attending">
-                <h1>ARE YOU GOING?</h1>
-                <ul class="buttons">
-                    <li>
-
-                        <a class="yes" href="./savedconnections.html">YES</a>
-                    </li>
-                    <li>
-                        <a class="no" href="./SavedConnections.html">NO</a>
-                    </li>
-                    <li>
-                        <a class="maybe" href="./SavedConnections.html">MAYBE</a>
-                    </li>
-                </ul>
-
-            </div>
-
-
-        </section>
-    </section>
-
-    <!-- ```````````````````````FOOTER```````````````````````  -->
-
-
-    <footer class="footer-distributed">
-
-
-        <section class="footer-left">
-            <h3>NDW</h3>
-            <ul>
-                <li><a href=""> ABOUT</a></li>
-                <li><a href=""> CONTACT</a></li>
-                <li><a href=""> DIRECTORY</a></li>
-
-            </ul>
-            <h6>NDW © 2020</h6>
-
-        </section>
-
-        <section class="footer-right">
-            <h3>SOCIAL MEDIA</h3>
-            <ul>
-                <li>
-                    <a class="instagram" href=""> </a>
-                </li>
-                <li>
-                    <a class="youtube" href=""> </a>
-                </li>
-                <li>
-                    <a class="facebook" href=""> </a>
-                </li>
-
-            </ul>
-
-        </section>
-
-
-
-    </footer>
-
-
-</body>
-
-</html>
+    </html>

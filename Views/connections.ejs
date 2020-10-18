@@ -1,142 +1,73 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include('./partials/head.ejs') %>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/ConnectionsStyle.css">
 
-    <title>CONNECTIONS</title>
-</head>
+    <body>
+        <!-- ```````````````````````HEADER```````````````````````  -->
 
-<body>
 
-    <!-- ```````````````````````HEADER```````````````````````  -->
+        <%- include('./partials/header.ejs') %>
 
-    <header class="header">
-        <div class="navigation-bar">
-            <div id="navigation-container">
-                <img src="/img/LOGO.png" alt="logo">
-                <ul>
-                    <li><a href="#">Start a new connection</a></li>
-                    <li><a href="#">Login</a></li>
-                    <li><a href="#">Signup</a></li>
-                </ul>
-            </div>
-            <div class="site-name-holder">
-                <h1 class="site-name">Niner Design Week</h1>
-            </div>
-            <section class="page-name">
-                <h1>CONNECTIONS</h1>
 
-                <ul>
-                    <li><a href="/Views/index.html">HOME</a> </li>
-                    <li><a href="/Views/connections.html">CONNECTIONS</a> </li>
-                    <li><a href="/Views/connection.html">DETAILS</a> </li>
-                    <li><a href="/Views/SavedConnections.html">SAVED</a> </li>
+            <!-- ```````````````````````BODY```````````````````````  -->
 
-                </ul>
 
+
+            <section class="body">
+                <section class="activityholder">
+
+                    <div class="activity">
+                        <h1>WORKSHOPS</h1>
+                        <figure>
+
+                            <img class="activity-fig-img" src="./public/img/lamps.jpg" alt="coonection image">
+                            <figcaption> <a href="/Views/connection.html">Art Introduction</a></figcaption>
+
+                        </figure>
+                        <figure>
+
+                            <img class="activity-fig-img" src="./public/img/share.jpg" alt="coonection image">
+                            <figcaption> <a href="/Views/connection.html">Design Thinking</a></figcaption>
+                        </figure>
+                        <figure>
+
+                            <img class="activity-fig-img" src="./public/img/make.jpg" alt="coonection image">
+                            <figcaption> <a href="/Views/connection.html">Photoshop Practice</a></figcaption>
+
+                        </figure>
+
+                    </div>
+                    <div class="activity">
+                        <h1>LECTURES</h1>
+                        <figure>
+
+                            <img class="activity-fig-img" src="./public/img/lamps.jpg" alt="coonection image">
+                            <figcaption> <a href="/Views/connection.html">Contemprory Art</a></figcaption>
+
+                        </figure>
+                        <figure>
+
+                            <img class="activity-fig-img" src="./public/img/share.jpg" alt="coonection image">
+                            <figcaption> <a href="/Views/connection.html">Media Art</a></figcaption>
+                        </figure>
+                        <figure>
+
+                            <img class="activity-fig-img" src="./public/img/make.jpg" alt="coonection image">
+                            <figcaption> <a href="/Views/connection.html">New Design Methods</a></figcaption>
+
+                        </figure>
+
+                    </div>
+
+
+                </section>
             </section>
-        </div>
-    </header>
+
+            <!-- ```````````````````````FOOTER```````````````````````  -->
 
 
-    <!-- ```````````````````````BODY```````````````````````  -->
+            <%- include('./partials/footer.ejs')  %>
 
 
+    </body>
 
-    <section class="body">
-        <section class="activityholder">
-
-            <div class="activity">
-                <h1>WORKSHOPS</h1>
-                <figure>
-
-                    <img class="activity-fig-img" src="/img/lamps.jpg" alt="coonection image">
-                    <figcaption> <a href="/Views/connection.html">Art Introduction</a></figcaption>
-
-                </figure>
-                <figure>
-
-                    <img class="activity-fig-img" src="/img/share.jpg" alt="coonection image">
-                    <figcaption> <a href="/Views/connection.html">Design Thinking</a></figcaption>
-                </figure>
-                <figure>
-
-                    <img class="activity-fig-img" src="/img/make.jpg" alt="coonection image">
-                    <figcaption> <a href="/Views/connection.html">Photoshop Practice</a></figcaption>
-
-                </figure>
-
-            </div>
-            <div class="activity">
-                <h1>LECTURES</h1>
-                <figure>
-
-                    <img class="activity-fig-img" src="/img/lamps.jpg" alt="coonection image">
-                    <figcaption> <a href="/Views/connection.html">Contemprory Art</a></figcaption>
-
-                </figure>
-                <figure>
-
-                    <img class="activity-fig-img" src="/img/share.jpg" alt="coonection image">
-                    <figcaption> <a href="/Views/connection.html">Media Art</a></figcaption>
-                </figure>
-                <figure>
-
-                    <img class="activity-fig-img" src="/img/make.jpg" alt="coonection image">
-                    <figcaption> <a href="/Views/connection.html">New Design Methods</a></figcaption>
-
-                </figure>
-
-            </div>
-
-
-        </section>
-    </section>
-
-    <!-- ```````````````````````FOOTER```````````````````````  -->
-
-
-    <footer class="footer-distributed">
-
-
-        <section class="footer-left">
-            <h3>NDW</h3>
-            <ul>
-                <li><a href=""> ABOUT</a></li>
-                <li><a href=""> CONTACT</a></li>
-                <li><a href=""> DIRECTORY</a></li>
-
-            </ul>
-            <h6>NDW © 2020</h6>
-
-        </section>
-
-        <section class="footer-right">
-            <h3>SOCIAL MEDIA</h3>
-            <ul>
-                <li>
-                    <a class="instagram" href=""> </a>
-                </li>
-                <li>
-                    <a class="youtube" href=""> </a>
-                </li>
-                <li>
-                    <a class="facebook" href=""> </a>
-                </li>
-
-            </ul>
-
-        </section>
-
-
-
-    </footer>
-
-
-</body>
-
-</html>
+    </html>
