@@ -31,11 +31,11 @@ const server = http.createServer((req, res) => {
 
             break;
         case '/connections':
-            path += '/connections1.html';
+            path += '/connections.html';
             res.statusCode = 200;
             break;
         case '/detail':
-            path += '/ConnectionDetails.html';
+            path += '/connection.html';
             res.statusCode = 200;
             break;
         default:
