@@ -16,24 +16,35 @@
                 <section class="detailHolder">
 
                     <div class="activitydetail">
-                        <h1> The Paradigm Shift of Creativity Concept</h1>
+                        <h1>
+                            <%=eventhandle.conName  %>
+                        </h1>
                         <div class="instructions ">
                             <figure>
 
-                                <img class="fig-img" src="./public/img/lamps.jpg" alt="lamps">
+                                <img class="fig-img" src="<%= eventhandle.conImage  %>" alt="<%= eventhandle.conName %>">
 
 
                             </figure>
                             <ul>
-                                <li>Host : Famous Artist</li>
-                                <li>Time : Thursday , June 29,2020</li>
-                                <li>5:30pm - 6:30pm</li>
-                                <li>Student Union</li>
+                                <li>Host :
+                                    <%= eventhandle.conHost  %>
+                                </li>
+                                <li>Time :
+                                    <%= eventhandle.conDate  %>
+                                </li>
+                                <li>
+                                    <%= eventhandle.conTime  %>
+                                </li>
+                                <li>
+                                    <%= eventhandle.conLoc  %>
+                                </li>
                             </ul>
                         </div>
                         <div class="time">
                             <h1>Details:</h1>
-                            <p>Lo, quidem quaerat temporibus dignissimos ipsa provident<br>quidem quaerat temporibus dignissimos ipsa provident.
+                            <p>
+                                <%=  eventhandle.condDetails  %>
                             </p>
                         </div>
 
@@ -46,13 +57,13 @@
                         <ul class="buttons">
                             <li>
 
-                                <a class="yes" href="./savedconnections.html">YES</a>
+                                <a class="yes" href="/savedconnections">YES</a>
                             </li>
                             <li>
-                                <a class="no" href="./SavedConnections.html">NO</a>
+                                <a class="no" href="/SavedConnections">NO</a>
                             </li>
                             <li>
-                                <a class="maybe" href="./SavedConnections.html">MAYBE</a>
+                                <a class="maybe" href="/SavedConnections">MAYBE</a>
                             </li>
                         </ul>
 
@@ -61,6 +72,7 @@
 
                 </section>
             </section>
+
 
             <!-- ```````````````````````FOOTER```````````````````````  -->
 

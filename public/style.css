@@ -431,8 +431,8 @@ td a {
     margin-top: 20px;
     border-radius: 5px;
     box-shadow: gray 0px 0px 10px;
-    height: 100px;
-    width: 100px;
+    height: 200px;
+    width: 200px;
     object-fit: cover;
 }
 
@@ -547,7 +547,21 @@ button:hover {
     margin-top: 20px;
     border-radius: 5px;
     box-shadow: gray 0px 0px 10px;
-    height: 100px;
+    height: 150px;
     width: 80%;
     object-fit: cover;
+}
+
+.aboutPage {
+    width: 500px;
+    margin-top: 200px;
+}
+
+.contactPage {
+    width: 500px;
+    margin-top: 200px;
+}
+
+.contactPage p {
+    font-size: larger;
 }
