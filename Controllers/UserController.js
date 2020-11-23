@@ -1,112 +1,10 @@
-//express app
-const express = require('express');
-const mongoose = require('mongoose');
-const methodOverride = require('method-override');
-const session = require('express-session');
+const User = require('../models/User');
+const Restaurant = require('../models/ConnectionsModel');
+exports.getUserCreate = (req, res, next) => {
+    res.render('./users/signup', { title: 'Login' });
+}
 
-
-const { isLoggedIn, isLoggedOut } = require('./controllers/authController');
-
-
-
-
-const Connection = require('./models/ConnectionsModel');
-const User = require('./models/User');
-
-const app = express();
-app.use('/public', express.static('public'));
-app.set('view engine', 'ejs');
-app.use(express.urlencoded({ extended: true }));
-
-
-
-const connectionController = require('./Controllers/ConnectionController');
-const userController = require('./Controllers/UserController.js');
-
-// listen for requests
-
-mongoose.connect('mongodb://localhost:27017/eventDB', { useUnifiedTopology: true, useNewUrlParser: true, useFindAndModify: false, useCreateIndex: true })
-    .then((result) => app.listen(8000))
-    .catch((err) => console.log(error));
-
-app.use(session({
-    secret: 'NBDA',
-    resave: false,
-    saveUninitialized: false,
-}));
-app.use(methodOverride('_method'));
-
-
-
-
-
-app.get('/', (req, res) => {
-
-    res.render('index', { title: "Home" });
-
-
-});
-
-app.get('/index', (req, res) => {
-
-    res.redirect('/');
-
-
-});
-app.get('/contact', (req, res) => {
-
-    res.render('contact', { title: "Contact" });
-
-
-});
-app.get('/about', (req, res) => {
-
-    res.render('about', { title: "About us" });
-
-
-});
-
-// ____________________________Connections______________________________
-
-// get connections
-app.get('/connections', connectionController.getAllConnections);
-
-//connection details
-
-app.get('/connection/:id', connectionController.getConnectionDetail);
-
-//Get create new connection page
-
-app.get('/connections/NewConnections', connectionController.getConnectionCreate);
-//Create new connection
-app.post('/NewConnections', connectionController.createConnection);
-// getRestaurantUpdate
-
-app.get('/connection/:id/update', connectionController.getConnectionUpdate);
-
-// updateRestaurant
-
-app.put('/connection/:id', connectionController.updateConnection);
-
-// deleteRestaurant
-app.delete('/connection/:id', connectionController.deleteConnection);
-
-
-// ______________________________________USERS++++++++++++++++++++++
-
-
-app.get('/Login', isLoggedOut, userController.getUserLogin);
-
-app.post('/Login', isLoggedOut, userController.postUserLogin);
-
-
-
-
-
-app.get('/Signup', userController.getUserCreate);
-
-app.post('/Signup', (req, res, next) => {
-
+exports.postUserCreate = (req, res, next) => {
     let user = new User({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
@@ -121,22 +19,63 @@ app.post('/Signup', (req, res, next) => {
             console.log(err);
             next();
         });
+}
+
+exports.getUserLogin = (req, res, next) => {
+    res.render('./users/login', { title: 'Login' });
+}
+
+exports.postUserLogin = (req, res, next) => {
+
+    let email = req.body.email;
+    let password = req.body.password;
+    User.findOne({ email: email })
+        .then(user => {
+            if (user) {
+                user.comparePassword(password)
+                    .then(isMatch => {
+                        if (isMatch) {
+                            req.session.user = { id: user._id, name: user.firstName };
+                            res.redirect('/connections');
+                        } else {
+                            //Incorrect password
+                            console.log('err')
+                            res.redirect('/login');
+                        }
+
+                    })
+            } else {
+                //Incorrect email address
+                res.redirect('/login');
+            }
+        })
+        .catch(err => {
+            console.log(err);
+            next();
+        });
 
 
-});
+};
 
-app.get('/logout', (req, res, next) => {
 
+exports.getUserProfile = (req, res, next) => {
+
+    Restaurant.find({ user: req.session.user.id })
+        .then(result => {
+            if (result) {
+
+                res.render('./users/profile', { data: result, name: 'Fast Food Inc!' });
+            } else {
+                res.render('./users/profile', { name: 'Fast Food Inc!' })
+            }
+
+        })
+
+
+}
+
+exports.getUserLogout = (req, res, next) => {
     req.session.destroy(err => {
         res.redirect('/');
     });
-
-
-
-});
-
-
-app.use((req, res) => {
-    res.render('error', { title: "404 error" });
-
-})
+}

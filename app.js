@@ -100,40 +100,14 @@ app.get('/Login', isLoggedOut, userController.getUserLogin);
 app.post('/Login', isLoggedOut, userController.postUserLogin);
 
 
+app.get('/Signup', isLoggedOut, userController.getUserCreate);
 
+app.post('/Signup', isLoggedOut, userController.postUserCreate);
 
+app.get('/logout', isLoggedIn, userController.getUserLogout);
 
-app.get('/Signup', userController.getUserCreate);
+// Saved connections
 
-app.post('/Signup', (req, res, next) => {
-
-    let user = new User({
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        email: req.body.email,
-        password: req.body.password
-    });
-    user.save()
-        .then(result => {
-            res.redirect('/');
-        })
-        .catch(err => {
-            console.log(err);
-            next();
-        });
-
-
-});
-
-app.get('/logout', (req, res, next) => {
-
-    req.session.destroy(err => {
-        res.redirect('/');
-    });
-
-
-
-});
 
 
 app.use((req, res) => {
