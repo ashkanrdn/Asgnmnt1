@@ -1,0 +1,22 @@
+<%- include('./partials/head.ejs') %>
+
+    <body>
+        <!-- ```````````````````````HEADER```````````````````````  -->
+        <%- include('./partials/header.ejs') %>
+            <!-- ```````````````````````BODY```````````````````````  -->
+            <form action="/SignUp" method="POST">
+                <label for="firstName">First Name:</label><br>
+                <input type="text" id="firstName" name="firstName"><br>
+                <label for="lastName">Last Name:</label><br>
+                <input type="text" id="lastName" name="lastName"><br>
+                <label for="email">E-mail:</label><br>
+                <input type="text" id="email" name="email"><br>
+                <label for="pass">Password:</label><br>
+                <input type="password" id="password" name="password"><br><br>
+                <input type="submit" value="Signup">
+            </form>
+            <!-- ```````````````````````FOOTER```````````````````````  -->
+            <%- include('./partials/footer.ejs')  %>
+    </body>
+
+    </html>
