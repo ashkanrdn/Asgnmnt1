@@ -1,7 +1,7 @@
 const Connection = require('../models/ConnectionsModel');
 
 exports.getAllConnections = (req, res, next) => {
-    Connection.find()
+    Connection.find().populate('User', 'firstName')
 
     .then(result => {
             res.render('./connections/connections', { conListHandler: result, title: 'Connections' });
@@ -13,7 +13,7 @@ exports.getAllConnections = (req, res, next) => {
 }
 
 exports.getConnectionDetail = (req, res, next) => {
-    Connection.findById(req.params.id)
+    Connection.findById(req.params.id).populate('User', 'firstName')
         .then(result => {
 
             res.render('./connections/connection', { eventhandle: result, title: " Details of " + result.conTitle });
@@ -40,6 +40,7 @@ exports.createConnection = (req, res, next) => {
         conStart: req.body.conStart,
         conEnd: req.body.conEnd,
         conImgURL: req.body.conImgURL,
+        user: req.session.user.id
     });
     connection.save()
         .then(result => {
@@ -55,7 +56,7 @@ exports.createConnection = (req, res, next) => {
 exports.getConnectionUpdate = (req, res, next) => {
     Connection.findById(req.params.id)
         .then(result => {
-            if (result)
+            if (result && result.user.equals(req.session.user.id))
             // && result.user.equals(req.session.user.id)
                 res.render('./connections/UpdateConnection', { eventhandle: result, title: 'Update Connection!' });
             else
@@ -107,7 +108,7 @@ exports.updateConnection = (req, res, next) => {
 exports.deleteConnection = (req, res, next) => {
     Connection.findById(req.params.id)
         .then(result => {
-            if (result)
+            if (result && result.user.equals(req.session.user.id))
             // && result.user.equals(req.session.user.id)
             {
                 Connection.findByIdAndDelete(req.params.id)
@@ -122,6 +123,27 @@ exports.deleteConnection = (req, res, next) => {
         console.log(err);
         next();
     });
+}
+
+
+
+
+
+
+exports.getSavedConnections = (req, res, next) => {
+
+    Connection.find({ user: req.session.user.id })
+        .then(result => {
+            if (result) {
+
+                res.render('./connections/SavedConnections', { data: result, title: 'Fast Food Inc!' });
+            } else {
+                res.render('./connections/SavedConnections', { name: 'Fast Food Inc!' })
+            }
+
+        })
+
+
 }
 
 exports.authenticate = (req, res, next) => {

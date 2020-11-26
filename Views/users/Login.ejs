@@ -4,13 +4,17 @@
         <!-- ```````````````````````HEADER```````````````````````  -->
         <%- include('../partials/header.ejs') %>
             <!-- ```````````````````````BODY```````````````````````  -->
-            <form action="/Login" method="POST">
-                <label for="email">user Name:</label><br>
-                <input type="text" id="email" name="email"><br>
-                <label for="password">Password:</label><br>
-                <input type="password" id="password" name="password"><br><br>
-                <input type="submit" value="Login">
-            </form>
+
+            <div class='formParent'>
+                <form action="/Login" method="POST">
+                    <label for="email">user Name:</label><br>
+                    <input type="text" id="email" name="email"><br>
+                    <label for="password">Password:</label><br>
+                    <input type="password" id="password" name="password"><br><br>
+                    <input type="submit" value="Login">
+                </form>
+            </div>
+
             <!-- ```````````````````````FOOTER```````````````````````  -->
             <%- include('../partials/footer.ejs')  %>
     </body>

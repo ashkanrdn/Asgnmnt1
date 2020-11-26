@@ -37,7 +37,10 @@ app.use(session({
 app.use(methodOverride('_method'));
 
 
-
+app.use((req, res, next) => {
+    res.locals.user = req.session.user || null;
+    next();
+});
 
 
 app.get('/', (req, res) => {
@@ -75,21 +78,25 @@ app.get('/connections', connectionController.getAllConnections);
 
 app.get('/connection/:id', connectionController.getConnectionDetail);
 
+//Saved Connection
+
+app.get('/connections/SavedConnections', connectionController.getSavedConnections);
+
 //Get create new connection page
 
-app.get('/connections/NewConnections', connectionController.getConnectionCreate);
+app.get('/connections/NewConnections', isLoggedIn, connectionController.getConnectionCreate);
 //Create new connection
-app.post('/NewConnections', connectionController.createConnection);
+app.post('/NewConnections', isLoggedIn, connectionController.createConnection);
 // getRestaurantUpdate
 
-app.get('/connection/:id/update', connectionController.getConnectionUpdate);
+app.get('/connection/:id/update', isLoggedIn, connectionController.getConnectionUpdate);
 
 // updateRestaurant
 
-app.put('/connection/:id', connectionController.updateConnection);
+app.put('/connection/:id', isLoggedIn, connectionController.updateConnection);
 
 // deleteRestaurant
-app.delete('/connection/:id', connectionController.deleteConnection);
+app.delete('/connection/:id', isLoggedIn, connectionController.deleteConnection);
 
 
 // ______________________________________USERS++++++++++++++++++++++

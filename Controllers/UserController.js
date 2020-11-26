@@ -60,13 +60,13 @@ exports.postUserLogin = (req, res, next) => {
 
 exports.getUserProfile = (req, res, next) => {
 
-    Restaurant.find({ user: req.session.user.id })
+    Connection.find({ user: req.session.user.id })
         .then(result => {
             if (result) {
 
-                res.render('./users/profile', { data: result, name: 'Fast Food Inc!' });
+                res.render('./users/profile', { data: result, name: 'Saved Connections' });
             } else {
-                res.render('./users/profile', { name: 'Fast Food Inc!' })
+                res.render('./users/profile', { name: 'Saved Connections' })
             }
 
         })

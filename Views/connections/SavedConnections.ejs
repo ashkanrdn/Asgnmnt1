@@ -1,49 +1,70 @@
-<%- include('./partials/head.ejs') %>
+<%- include('../partials/head.ejs') %>
 
     <body>
-
         <!-- ```````````````````````HEADER```````````````````````  -->
-
-        <%- include('./partials/header.ejs') %>
-
-
-
+        <%- include('../partials/header.ejs') %>
             <!-- ```````````````````````BODY```````````````````````  -->
-
-
-
             <section class="body">
-                <section class="detailHolder">
-                    <table class="tables">
-                        <tr>
-                            <th>Connections</th>
-                            <th>Category</th>
-                            <th>Going?</th>
-                            <th>Settings</th>
+                <% if (data !== null){ %>
 
-                        </tr>
-                        <tr>
-                            <td>Art Introduction</td>
-                            <td>WORKSHOPS</td>
-                            <td><button class="going">yes</button></td>
-                            <td> <a class="update" href="/connections">UPDATE</a> <a class="delete" href="/SavedConnections">DELETE</a></td>
-                        </tr>
-                        <tr>
-                            <td>Contemprory Art</td>
-                            <td>LECTURES</td>
-                            <td><button class="going">yes</button></td>
-                            <td> <a class="update" href="/connections">UPDATE</a> <a class="delete" href="/SavedConnections">DELETE</a></td>
-                        </tr>
-                    </table>
-                </section>
+
+                    <h1 class="SavedConnectionsTitle">
+                        <%= user.name%>'s connections
+                    </h1>
+                    <section class="detailHolder">
+
+                        <table class="tables">
+                            <tr>
+                                <th> Event Name </th>
+                                <th> Event Category </th>
+                                <th> Actions </th>
+                            </tr>
+                            <% data.forEach(event=>{ %>
+                                <tr>
+                                    <td>
+                                        <a href="/connection/<%=event._id%>">
+                                            <%=event.conTitle  %>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <%= event.conTopic %>
+                                    </td>
+                                    <td>
+                                        <form>
+                                            <button type="submit" formmethod="GET" formaction="/connection/<%= event._id%>/update">Edit</button>
+                                            <button type="submit" formmethod="POST" formaction="/connection/<%= event._id%>?_method=DELETE">Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <% }) ;%>
+                        </table>
+                    </section>
+                    <% } %>
+                        <section class="detailHolder">
+                            <table class="tables">
+                                <tr>
+                                    <th>Connections</th>
+                                    <th>Category</th>
+                                    <th>Going?</th>
+                                    <th>Settings</th>
+                                </tr>
+                                <tr>
+                                    <td>Art Introduction</td>
+                                    <td>WORKSHOPS</td>
+                                    <td><button class="going">yes</button></td>
+                                    <td> <a class="update" href="/connections">UPDATE</a> <a class="delete" href="/SavedConnections">DELETE</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Contemprory Art</td>
+                                    <td>LECTURES</td>
+                                    <td><button class="going">yes</button></td>
+                                    <td> <a class="update" href="/connections">UPDATE</a> <a class="delete" href="/SavedConnections">DELETE</a></td>
+                                </tr>
+                            </table>
+                        </section>
             </section>
-
-
             <!-- ```````````````````````FOOTER```````````````````````  -->
-
-
-            <%- include('./partials/footer.ejs')  %>
-
+            <%- include('../partials/footer.ejs')  %>
     </body>
 
     </html>

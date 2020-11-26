@@ -2,12 +2,38 @@
     <div class="navigation-bar">
         <div id="navigation-container">
             <img src="/public/img/LOGO.png" alt="logo">
-            <ul>
-                <li><a href="../connections/NewConnections">Start a new connection</a></li>
-                <li><a href="/Login">Login</a></li>
-                <li><a href="/Logout">Logout</a></li>
-                <li><a href="/SignUp">Signup</a></li>
-            </ul>
+
+
+
+            <nav>
+
+
+
+
+                <ul>
+                    <li> <a href='/'>Home</a> </li>
+                    <li><a href='/connections'>Connections</a> </li>
+                    <%if(user) {%>
+
+                        <li> <a href='../connections/NewConnections'>Create New Connection</a> </li>
+                        <li> <a href='../connections/SavedConnections'>Saved Connections</a></li>
+                        <li> <a href='/Logout'>Log out</a> </li>
+                        <%} else {%>
+                            <li> <a href='/SignUp'>Sign Up</a></li>
+                            <li> <a href='/Login'>Login</a> </li>
+                            <%}%>
+                </ul>
+
+
+
+
+
+
+
+
+
+            </nav>
+
         </div>
         <div class="site-name-holder">
             <h1 class="site-name">Niner Design Week</h1>
@@ -16,12 +42,27 @@
             <h1>
                 <%= title %>
             </h1>
-            <ul>
-                <li><a href="/index">HOME</a> </li>
-                <li><a href="/connections">CONNECTIONS</a> </li>
-                <li><a href="/connection">DETAILS</a> </li>
-                <li><a href="/SavedConnections">SAVED</a> </li>
-            </ul>
+
+            <div class="welcomeNote">
+                <% if(user !== null){ %>
+
+                    <h1>
+                        welcome
+                        <%= user.name%>
+                    </h1>
+                    <% }else{ %>
+                        <h1>
+                            welcome Guest
+                        </h1>
+
+
+                        <% } %>
+
+
+
+            </div>
+
+
         </section>
     </div>
 </header>
