@@ -19,10 +19,13 @@
                                 <th> Event Category </th>
                                 <th> Actions </th>
                             </tr>
+
                             <% data.forEach(event=>{ %>
+
+
                                 <tr>
                                     <td>
-                                        <a href="/connection/<%=event._id%>">
+                                        <a class='savedEvent' href="/connection/<%=event._id%>">
                                             <%=event.conTitle  %>
                                         </a>
                                     </td>
@@ -30,9 +33,19 @@
                                         <%= event.conTopic %>
                                     </td>
                                     <td>
-                                        <form>
-                                            <button type="submit" formmethod="GET" formaction="/connection/<%= event._id%>/update">Edit</button>
-                                            <button type="submit" formmethod="POST" formaction="/connection/<%= event._id%>?_method=DELETE">Delete</button>
+                                        <form class="specialForm">
+                                            <ul class="buttons">
+
+
+
+
+                                                <li> <button class="maybe" type="submit" formmethod="GET" formaction="/connection/<%= event._id%>/update">Edit</button> </li>
+
+                                                <li> <button class="no" type="submit" formmethod="POST" formaction="/connection/<%= event._id%>?_method=DELETE">Delete</button> </li>
+
+
+
+                                            </ul>
                                         </form>
                                     </td>
                                 </tr>

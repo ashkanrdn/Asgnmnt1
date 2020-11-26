@@ -41,21 +41,36 @@
                     </div>
                     <div class="attending">
                         <% if( user !==null && eventhandle !== null && eventhandle.user._id  == user.id ) {%>
+
+
+
+
                             <form>
-                                <button type="submit" formmethod="GET" formaction="/connection/<%= eventhandle._id%>/update">Edit</button>
-                                <button type="submit" formmethod="POST" formaction="/connection/<%= eventhandle._id%>?_method=DELETE">Delete</button>
+                                <ul class="buttons">
+                                    <li>
+                                        <button class="maybe" type="submit" formmethod="GET" formaction="/connection/<%= eventhandle._id%>/update">Edit</button>
+
+                                    </li>
+                                    <li>
+                                        <button class="no" type="submit" formmethod="POST" formaction="/connection/<%= eventhandle._id%>?_method=DELETE">Delete</button>
+
+                                    </li>
+
+                                </ul>
+
+
                             </form>
                             <%}else{%>
                                 <h1>ARE YOU GOING?</h1>
                                 <ul class="buttons">
                                     <li>
-                                        <a class="yes" href="/savedconnections">YES</a>
+                                        <a class="yes" href="/">YES</a>
                                     </li>
                                     <li>
-                                        <a class="no" href="/SavedConnections">NO</a>
+                                        <a class="no" href="/">NO</a>
                                     </li>
                                     <li>
-                                        <a class="maybe" href="/SavedConnections">MAYBE</a>
+                                        <a class="maybe" href="/">MAYBE</a>
                                     </li>
                                 </ul>
                                 <% } %>

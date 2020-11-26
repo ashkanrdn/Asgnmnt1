@@ -555,11 +555,13 @@ button:hover {
 .aboutPage {
     width: 500px;
     margin-top: 200px;
+    margin: auto;
 }
 
 .contactPage {
     width: 500px;
     margin-top: 200px;
+    margin: auto;
 }
 
 .contactPage p {
@@ -611,7 +613,7 @@ form {
        one fractional unit of the available space, and is the
        size of the first and last of the columns. The central
        column is declared as being 0.5em in width: */
-    grid-template-columns: 1fr 0.5em 1fr;
+    grid-template-columns: 1fr 0.5em 1fr 0.5fr;
     margin-top: 25px;
     width: 60%;
 }
@@ -643,4 +645,29 @@ button {
     padding: 10px;
     margin: auto;
     text-align: center;
+}
+
+form li button {
+    margin-top: 5px;
+}
+
+.specialForm {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 0;
+    width: 100%;
+}
+
+.specialForm li button {
+    margin-top: 5px;
+}
+
+.savedEvent {
+    text-decoration: none;
+    color: white;
+    border: none;
+    background-color: rgba(100, 100, 100, 0);
+    border-radius: 5px;
+    font-size: large;
 }

@@ -56,11 +56,13 @@ exports.createConnection = (req, res, next) => {
 exports.getConnectionUpdate = (req, res, next) => {
     Connection.findById(req.params.id)
         .then(result => {
-            if (result && result.user.equals(req.session.user.id))
-            // && result.user.equals(req.session.user.id)
+            if (result && result.user.equals(req.session.user.id)) {
+                console.log(result);
+                // && result.user.equals(req.session.user.id)
                 res.render('./connections/UpdateConnection', { eventhandle: result, title: 'Update Connection!' });
-            else
+            } else {
                 res.redirect('/Connections');
+            }
         })
         .catch(err => {
             console.log(err);
@@ -136,9 +138,9 @@ exports.getSavedConnections = (req, res, next) => {
         .then(result => {
             if (result) {
 
-                res.render('./connections/SavedConnections', { data: result, title: 'Fast Food Inc!' });
+                res.render('./connections/SavedConnections', { data: result, title: 'Saved Connections' });
             } else {
-                res.render('./connections/SavedConnections', { name: 'Fast Food Inc!' })
+                res.render('./connections/SavedConnections', { title: 'Saved Connections' })
             }
 
         })
