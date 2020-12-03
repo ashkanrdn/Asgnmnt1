@@ -80,7 +80,7 @@ app.get('/connection/:id', connectionController.getConnectionDetail);
 
 //Saved Connection
 
-app.get('/connections/SavedConnections', connectionController.getSavedConnections);
+app.get('/connections/SavedConnections', isLoggedIn, connectionController.getSavedConnections);
 
 //Get create new connection page
 

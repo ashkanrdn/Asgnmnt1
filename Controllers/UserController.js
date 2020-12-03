@@ -1,7 +1,7 @@
 const User = require('../models/User');
 const Restaurant = require('../models/ConnectionsModel');
 exports.getUserCreate = (req, res, next) => {
-    res.render('./users/signup', { title: 'Login' });
+    res.render('./users/signup', { title: 'SignUP' });
 }
 
 exports.postUserCreate = (req, res, next) => {

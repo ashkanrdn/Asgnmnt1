@@ -44,7 +44,7 @@ exports.createConnection = (req, res, next) => {
     });
     connection.save()
         .then(result => {
-            res.redirect('/');
+            res.redirect('/connections');
         })
         .catch(err => {
             console.log(err);
@@ -61,7 +61,7 @@ exports.getConnectionUpdate = (req, res, next) => {
                 // && result.user.equals(req.session.user.id)
                 res.render('./connections/UpdateConnection', { eventhandle: result, title: 'Update Connection!' });
             } else {
-                res.redirect('/Connections');
+                res.redirect('/connections');
             }
         })
         .catch(err => {

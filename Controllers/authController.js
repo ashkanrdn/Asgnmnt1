@@ -1,6 +1,6 @@
 exports.isLoggedIn = (req, res, next) => {
     if (!req.session.user) {
-        res.redirect("/Login");
+        res.redirect("/user/Login");
     } else {
         next();
     }
@@ -9,7 +9,7 @@ exports.isLoggedIn = (req, res, next) => {
 
 exports.isLoggedOut = (req, res, next) => {
     if (req.session.user) {
-        res.redirect("/");
+        res.redirect("/connections/SavedConnections");
     } else {
         next();
     }
