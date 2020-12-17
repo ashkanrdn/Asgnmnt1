@@ -3,7 +3,10 @@ const express = require('express');
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 const session = require('express-session');
+const flash = require('connect-flash')
 
+const connectionRoutes = require('./Routes/connectionRoutes');
+const userRoutes = require('./Routes/userRoutes');
 
 const { isLoggedIn, isLoggedOut } = require('./controllers/authController');
 
@@ -34,16 +37,28 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
 }));
+
+app.use(flash());
+
+app.use((req, res, next) => {
+    res.locals.errorMessages = req.flash('error');
+    res.locals.successMessages = req.flash('success');
+    next();
+})
 app.use(methodOverride('_method'));
 
 
 app.use((req, res, next) => {
     res.locals.user = req.session.user || null;
+    res.locals.errorMessages = req.flash('error');
+    res.locals.successMessages = req.flash('success');
     next();
 });
 
 
 app.get('/', (req, res) => {
+    console.log(res.locals.errorMessages, 'err');
+    console.log(res.locals.successMessages, 'success');
 
     res.render('index', { title: "Home" });
 
@@ -69,49 +84,18 @@ app.get('/about', (req, res) => {
 
 });
 
-// ____________________________Connections______________________________
-
-// get connections
-app.get('/connections', connectionController.getAllConnections);
-
-//connection details
-
-app.get('/connection/:id', connectionController.getConnectionDetail);
-
-//Saved Connection
-
-app.get('/connections/SavedConnections', isLoggedIn, connectionController.getSavedConnections);
-
-//Get create new connection page
-
-app.get('/connections/NewConnections', isLoggedIn, connectionController.getConnectionCreate);
-//Create new connection
-app.post('/NewConnections', isLoggedIn, connectionController.createConnection);
-// getRestaurantUpdate
-
-app.get('/connection/:id/update', isLoggedIn, connectionController.getConnectionUpdate);
-
-// updateRestaurant
-
-app.put('/connection/:id', isLoggedIn, connectionController.updateConnection);
-
-// deleteRestaurant
-app.delete('/connection/:id', isLoggedIn, connectionController.deleteConnection);
+// _____________________________ CONNECTION ROUTES _____________________________
 
 
-// ______________________________________USERS++++++++++++++++++++++
+
+app.use('/connections', connectionRoutes);
 
 
-app.get('/Login', isLoggedOut, userController.getUserLogin);
 
-app.post('/Login', isLoggedOut, userController.postUserLogin);
+// _____________________________ USER ROUTES _____________________________
+app.use('/users', userRoutes);
 
 
-app.get('/Signup', isLoggedOut, userController.getUserCreate);
-
-app.post('/Signup', isLoggedOut, userController.postUserCreate);
-
-app.get('/logout', isLoggedIn, userController.getUserLogout);
 
 // Saved connections
 

@@ -3,20 +3,22 @@
     <body>
         <!-- ```````````````````````HEADER```````````````````````  -->
         <%- include('../partials/header.ejs') %>
-            <!-- ```````````````````````BODY```````````````````````  -->
+            <%- include('../partials/messages.ejs') %>
 
-            <div class='formParent'>
-                <form action="/Login" method="POST">
-                    <label for="email">user Name:</label><br>
-                    <input type="text" id="email" name="email"><br>
-                    <label for="password">Password:</label><br>
-                    <input type="password" id="password" name="password"><br><br>
-                    <input type="submit" value="Login">
-                </form>
-            </div>
+                <!-- ```````````````````````BODY```````````````````````  -->
 
-            <!-- ```````````````````````FOOTER```````````````````````  -->
-            <%- include('../partials/footer.ejs')  %>
+                <div class='formParent'>
+                    <form action="/users/Login" method="POST">
+                        <label for="email">user Name:</label><br>
+                        <input type="text" id="email" name="email"><br>
+                        <label for="password">Password:</label><br>
+                        <input type="password" id="password" name="password"><br><br>
+                        <input type="submit" value="Login">
+                    </form>
+                </div>
+
+                <!-- ```````````````````````FOOTER```````````````````````  -->
+                <%- include('../partials/footer.ejs')  %>
     </body>
 
     </html>

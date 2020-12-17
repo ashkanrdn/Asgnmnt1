@@ -1,6 +1,6 @@
 exports.isLoggedIn = (req, res, next) => {
     if (!req.session.user) {
-        res.redirect("/user/Login");
+        res.redirect("/Login");
     } else {
         next();
     }

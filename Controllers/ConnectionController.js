@@ -1,4 +1,7 @@
 const Connection = require('../models/ConnectionsModel');
+const validationResult = require('express-validator').validationResult;
+
+
 
 exports.getAllConnections = (req, res, next) => {
     Connection.find().populate('User', 'firstName')
@@ -30,27 +33,42 @@ exports.getConnectionCreate = (req, res) => {
     res.render('./connections/NewConnections', { title: "New Connections" });
 }
 exports.createConnection = (req, res, next) => {
-    let connection = new Connection({
-        conTopic: req.body.conTopic,
-        conTitle: req.body.conTitle,
-        conHost: req.body.conHost,
-        conDetails: req.body.conDetails,
-        conLocation: req.body.conLocation,
-        conDate: req.body.conDate,
-        conStart: req.body.conStart,
-        conEnd: req.body.conEnd,
-        conImgURL: req.body.conImgURL,
-        user: req.session.user.id
-    });
-    connection.save()
-        .then(result => {
-            res.redirect('/connections');
-        })
-        .catch(err => {
-            console.log(err);
-            next();
+
+
+    const errors = validationResult(req);
+    console.log(errors.array());
+    if (!errors.isEmpty()) {
+        errors.array().forEach((error) => {
+            req.flash('error', error.msg);
         });
 
+        res.redirect('/')
+    } else {
+
+
+        let connection = new Connection({
+            conTopic: req.body.conTopic,
+            conTitle: req.body.conTitle,
+            conHost: req.body.conHost,
+            conDetails: req.body.conDetails,
+            conLocation: req.body.conLocation,
+            conDate: req.body.conDate,
+            conStart: req.body.conStart,
+            conEnd: req.body.conEnd,
+            conImgURL: req.body.conImgURL,
+            user: req.session.user.id
+        });
+        connection.save()
+            .then(result => {
+                req.flash('success', 'Successfully created the Event')
+
+                res.redirect('/connections');
+            })
+            .catch(err => {
+                console.log(err);
+                next();
+            });
+    }
 }
 
 exports.getConnectionUpdate = (req, res, next) => {
@@ -90,20 +108,23 @@ exports.updateConnection = (req, res, next) => {
 
     Connection.findById(req.params.id)
         .then(result => {
-            if (result) {
-                Connection.findByIdAndUpdate(req.params.id, { $set: connectionParams })
-                    .then(result => {
-                        res.redirect('/connection/' + req.params.id)
-                    })
+            if (result && result.user.equals(req.session.user.id))
+                return Connection.findByIdAndUpdate(req.params.id, { $set: connectionParams });
+            else
+                req.flash('error', 'not authorized')
 
-
-            } else
-                res.redirect('/connections');
+            res.redirect('/connections');
         })
-        .catch(err => {
-            console.log(err);
-            next();
-        });
+        .then(result => {
+            req.flash('success', 'Successfully updated the event')
+
+            res.redirect('/connection/' + req.params.id)
+        })
+
+    .catch(err => {
+        console.log(err);
+        next();
+    });
 
 };
 

@@ -1,27 +1,40 @@
 const express = require('express');
 const router = express.Router();
-
+const validateEvent = require('../middlewares/validator').validateEvent;
+const { isLoggedIn, isLoggedOut } = require('../controllers/authController');
 const connectionController = require('../controllers/ConnectionController');
 
-// 1-1
+
+
+// get connections
+
 router.get('/', connectionController.getAllConnections);
-// 1-2
-router.post('/', connectionController.createConnections);
-// 2
-router.get('/:id', connectionController.getConnectionsDetail);
 
-// 3
-router.get('/NewConnections', connectionController.getConnectionsCreate);
+//connection details
 
-// 3-1
-router.post('/', connectionController.createConnection);
+router.get('/connection/:id', connectionController.getConnectionDetail);
 
-// 4
+//Saved Connection
 
-router.get('/:id/update', connectionController.getConnectionsUpdate);
+router.get('/SavedConnections', isLoggedIn, connectionController.getSavedConnections);
 
-router.put('/:id', connectionController.updateConnection);
+//Get create new connection page
 
-router.delete('/:id', connectionController.deleteConnection);
+router.get('/NewConnections', isLoggedIn, connectionController.getConnectionCreate);
+//Create new connection
+router.post('/NewConnections', isLoggedIn, validateEvent, connectionController.createConnection);
+// getRestaurantUpdate
+
+router.get('/connection/:id/update', isLoggedIn, connectionController.getConnectionUpdate);
+
+// updateRestaurant
+
+router.put('/connection/:id', isLoggedIn, validateEvent, connectionController.updateConnection);
+
+// deleteRestaurant
+router.delete('/connection/:id', isLoggedIn, connectionController.deleteConnection);
+
+
+
 
 module.exports = router;

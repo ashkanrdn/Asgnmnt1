@@ -3,81 +3,83 @@
     <body>
         <!-- ```````````````````````HEADER```````````````````````  -->
         <%- include('../partials/header.ejs') %>
-            <!-- ```````````````````````BODY```````````````````````  -->
-            <section class="body">
-                <% if (data !== null){ %>
+            <%- include('../partials/messages.ejs') %>
+
+                <!-- ```````````````````````BODY```````````````````````  -->
+                <section class="body">
+                    <% if (data !== null){ %>
 
 
-                    <h1 class="SavedConnectionsTitle">
-                        <%= user.name%>'s connections
-                    </h1>
-                    <section class="detailHolder">
-
-                        <table class="tables">
-                            <tr>
-                                <th> Event Name </th>
-                                <th> Event Category </th>
-                                <th> Actions </th>
-                            </tr>
-
-                            <% data.forEach(event=>{ %>
-
-
-                                <tr>
-                                    <td>
-                                        <a class='savedEvent' href="/connection/<%=event._id%>">
-                                            <%=event.conTitle  %>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <%= event.conTopic %>
-                                    </td>
-                                    <td>
-                                        <form class="specialForm">
-                                            <ul class="buttons">
-
-
-
-
-                                                <li> <button class="maybe" type="submit" formmethod="GET" formaction="/connection/<%= event._id%>/update">Edit</button> </li>
-
-                                                <li> <button class="no" type="submit" formmethod="POST" formaction="/connection/<%= event._id%>?_method=DELETE">Delete</button> </li>
-
-
-
-                                            </ul>
-                                        </form>
-                                    </td>
-                                </tr>
-                                <% }) ;%>
-                        </table>
-                    </section>
-                    <% } %>
+                        <h1 class="SavedConnectionsTitle">
+                            <%= user.name%>'s connections
+                        </h1>
                         <section class="detailHolder">
+
                             <table class="tables">
                                 <tr>
-                                    <th>Connections</th>
-                                    <th>Category</th>
-                                    <th>Going?</th>
-                                    <th>Settings</th>
+                                    <th> Event Name </th>
+                                    <th> Event Category </th>
+                                    <th> Actions </th>
                                 </tr>
-                                <tr>
-                                    <td>Art Introduction</td>
-                                    <td>WORKSHOPS</td>
-                                    <td><button class="going">yes</button></td>
-                                    <td> <a class="update" href="/connections">UPDATE</a> <a class="delete" href="/SavedConnections">DELETE</a></td>
-                                </tr>
-                                <tr>
-                                    <td>Contemprory Art</td>
-                                    <td>LECTURES</td>
-                                    <td><button class="going">yes</button></td>
-                                    <td> <a class="update" href="/connections">UPDATE</a> <a class="delete" href="/SavedConnections">DELETE</a></td>
-                                </tr>
+
+                                <% data.forEach(event=>{ %>
+
+
+                                    <tr>
+                                        <td>
+                                            <a class='savedEvent' href="/connections/connection/<%=event._id%>">
+                                                <%=event.conTitle  %>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <%= event.conTopic %>
+                                        </td>
+                                        <td>
+                                            <form class="specialForm">
+                                                <ul class="buttons">
+
+
+
+
+                                                    <li> <button class="maybe" type="submit" formmethod="GET" formaction="/connections/connection/<%= event._id%>/update">Edit</button> </li>
+
+                                                    <li> <button class="no" type="submit" formmethod="POST" formaction="/connections/connection/<%= event._id%>?_method=DELETE">Delete</button> </li>
+
+
+
+                                                </ul>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    <% }) ;%>
                             </table>
                         </section>
-            </section>
-            <!-- ```````````````````````FOOTER```````````````````````  -->
-            <%- include('../partials/footer.ejs')  %>
+                        <% } %>
+                            <section class="detailHolder">
+                                <table class="tables">
+                                    <tr>
+                                        <th>Connections</th>
+                                        <th>Category</th>
+                                        <th>Going?</th>
+                                        <th>Settings</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Art Introduction</td>
+                                        <td>WORKSHOPS</td>
+                                        <td><button class="going">yes</button></td>
+                                        <td> <a class="update" href="/connections">UPDATE</a> <a class="delete" href="/connections/SavedConnections">DELETE</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Contemprory Art</td>
+                                        <td>LECTURES</td>
+                                        <td><button class="going">yes</button></td>
+                                        <td> <a class="update" href="/connections">UPDATE</a> <a class="delete" href="/connections/SavedConnections">DELETE</a></td>
+                                    </tr>
+                                </table>
+                            </section>
+                </section>
+                <!-- ```````````````````````FOOTER```````````````````````  -->
+                <%- include('../partials/footer.ejs')  %>
     </body>
 
     </html>
