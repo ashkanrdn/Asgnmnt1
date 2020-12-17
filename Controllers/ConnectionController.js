@@ -75,7 +75,7 @@ exports.getConnectionUpdate = (req, res, next) => {
     Connection.findById(req.params.id)
         .then(result => {
             if (result && result.user.equals(req.session.user.id)) {
-                console.log(result);
+                console.log(result, 'text');
                 // && result.user.equals(req.session.user.id)
                 res.render('./connections/UpdateConnection', { eventhandle: result, title: 'Update Connection!' });
             } else {
@@ -118,7 +118,7 @@ exports.updateConnection = (req, res, next) => {
         .then(result => {
             req.flash('success', 'Successfully updated the event')
 
-            res.redirect('/connection/' + req.params.id)
+            res.redirect('/connections/connection/' + req.params.id)
         })
 
     .catch(err => {

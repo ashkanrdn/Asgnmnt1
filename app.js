@@ -40,12 +40,8 @@ app.use(session({
 
 app.use(flash());
 
-app.use((req, res, next) => {
-    res.locals.errorMessages = req.flash('error');
-    res.locals.successMessages = req.flash('success');
-    next();
-})
 app.use(methodOverride('_method'));
+
 
 
 app.use((req, res, next) => {

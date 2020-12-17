@@ -13,27 +13,12 @@ exports.getUserCreate = (req, res, next) => {
     res.render('./users/signup', { title: 'SignUP' });
 }
 
-// exports.postUserCreate = (req, res, next) => {
-//     let user = new User({
-//         firstName: req.body.firstName,
-//         lastName: req.body.lastName,
-//         email: req.body.email,
-//         password: req.body.password
-//     });
-//     user.save()
-//         .then(result => {
-//             res.redirect('/');
-//         })
-//         .catch(err => {
-//             console.log(err);
-//             next();
-//         });
-// }
 
 
 exports.postUserCreate = (req, res, next) => {
-    console.log(req.body)
+
     const errors = validationResult(req);
+    console.log(req.body)
     console.log(errors.array());
     if (!errors.isEmpty()) {
         errors.array().forEach((error) => {
@@ -68,8 +53,9 @@ exports.getUserLogin = (req, res, next) => {
 }
 
 exports.postUserLogin = (req, res, next) => {
-
+    console.log(req.body)
     const errors = validationResult(req);
+    console.log(errors.array());
     if (!errors.isEmpty()) {
         errors.array().forEach((error) => {
             req.flash('error', error.msg);
