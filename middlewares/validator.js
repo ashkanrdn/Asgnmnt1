@@ -25,4 +25,7 @@ exports.validateEvent = [
 
 
 
-]
+];
+
+
+exports.validateRSVP = [check('rsvp').isIn(['yes', 'no', 'maybe']).withMessage('not valid')]

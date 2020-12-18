@@ -7,6 +7,10 @@ const connectionSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
+    rsvp: {
+        type: Schema.Types.ObjectId,
+        ref: 'Rsvp'
+    },
     conTopic: { type: String, required: true },
     conTitle: { type: String, required: true },
     conHost: { type: String, required: true },
@@ -19,6 +23,7 @@ const connectionSchema = new Schema({
         type: String,
         default: 'https://www.signalconnect.com/wp-content/uploads/2018/02/DIRECTV-for-Fast-Food-Restaurants.jpg'
     }
+
 });
 
 const Connection = mongoose.model('Connection', connectionSchema);

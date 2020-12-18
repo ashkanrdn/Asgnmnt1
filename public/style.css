@@ -689,3 +689,12 @@ form li button {
     text-align: center;
     padding: 10px 10px;
 }
+
+.specialForm {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+}
+
+
+}

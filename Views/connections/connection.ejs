@@ -63,18 +63,29 @@
 
                                 </form>
                                 <%}else{%>
-                                    <h1>ARE YOU GOING?</h1>
-                                    <ul class="buttons">
-                                        <li>
-                                            <a class="yes" href="/">YES</a>
-                                        </li>
-                                        <li>
-                                            <a class="no" href="/">NO</a>
-                                        </li>
-                                        <li>
-                                            <a class="maybe" href="/">MAYBE</a>
-                                        </li>
-                                    </ul>
+                                    <h1>ARE YOU GOING?<br>
+                                        <%=len %> are going
+                                    </h1>
+                                    <form method="POST" action="/connections/connection/<%= eventhandle._id%>/rsvp">
+                                        <ul class="buttons">
+                                            <li>
+
+                                                <button class="yes" type="submit" name="rsvp" value="Yes">YES</button>
+
+                                            </li>
+                                            <li>
+                                                <button class="no" type="submit" name="rsvp" value="No">No</button>
+
+
+                                            </li>
+                                            <li>
+                                                <button class="maybe" type="submit" name="rsvp" value="Maybe">Maybe</button>
+
+
+
+                                            </li>
+                                        </ul>
+                                    </form>
                                     <% } %>
                         </div>
                     </section>

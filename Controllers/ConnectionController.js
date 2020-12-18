@@ -1,4 +1,6 @@
 const Connection = require('../models/ConnectionsModel');
+const Rsvp = require('../models/Rsvp');
+const mongoose = require('mongoose');
 const validationResult = require('express-validator').validationResult;
 
 
@@ -18,8 +20,22 @@ exports.getAllConnections = (req, res, next) => {
 exports.getConnectionDetail = (req, res, next) => {
     Connection.findById(req.params.id).populate('User', 'firstName')
         .then(result => {
+            if (result) {
 
-            res.render('./connections/connection', { eventhandle: result, title: " Details of " + result.conTitle });
+                console.log(result, '_____________________________________________________________')
+                Rsvp.find({ event: req.params.id, going: 'Yes' })
+                    .then(resArray => {
+
+                        console.log(resArray, '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+                        res.render('./connections/connection', { eventhandle: result, title: " Details of " + result.conTitle, len: resArray.length });
+
+                    }).catch(err => {
+                        console.log('err')
+                        res.render('./connections/connection', { eventhandle: result, title: " Details of " + result.conTitle, len: 35 });
+
+                    })
+            } else { next() }
+
 
         })
         .catch(err => {
@@ -36,7 +52,7 @@ exports.createConnection = (req, res, next) => {
 
 
     const errors = validationResult(req);
-    console.log(errors.array());
+    // console.log(errors.array());
     if (!errors.isEmpty()) {
         errors.array().forEach((error) => {
             req.flash('error', error.msg);
@@ -75,7 +91,7 @@ exports.getConnectionUpdate = (req, res, next) => {
     Connection.findById(req.params.id)
         .then(result => {
             if (result && result.user.equals(req.session.user.id)) {
-                console.log(result, 'text');
+                // console.log(result, 'text');
                 // && result.user.equals(req.session.user.id)
                 res.render('./connections/UpdateConnection', { eventhandle: result, title: 'Update Connection!' });
             } else {
@@ -136,7 +152,16 @@ exports.deleteConnection = (req, res, next) => {
             {
                 Connection.findByIdAndDelete(req.params.id)
                     .then(result => {
-                        res.redirect('/connections');
+                        Rsvp.deleteMany({ connection: req.params.id }).then(result => {
+                                req.flash('success', 'successfully deleted'),
+
+                                    res.redirect('/connections');
+                            }
+
+
+
+                        )
+
                     })
             }
         })
@@ -146,20 +171,63 @@ exports.deleteConnection = (req, res, next) => {
         console.log(err);
         next();
     });
+
+
+
+
+
+}
+
+
+exports.createRsvp = (req, res, next) => {
+    console.log(req.params);
+    let rsvpParams = {
+            event: req.params.id,
+            user: req.session.user.id,
+            going: req.body.rsvp
+        }
+        // console.log(rsvpParams);
+        // console.log(mongoose.Types.ObjectId.isValid('5fc94d388c834a4f24198ecb'));
+    Rsvp.findOneAndUpdate({ event: req.params.id, user: req.session.user.id }, rsvpParams, { upsert: true }).then(result => {
+
+        req.flash('success', 'you have rsvped');
+        res.redirect('/connections/SavedConnections')
+    }).catch(err => {
+        console.log(err);
+        next();
+    })
 }
 
 
 
 
-
-
 exports.getSavedConnections = (req, res, next) => {
-
-    Connection.find({ user: req.session.user.id })
+    let temp
+    Connection.find({ user: req.session.user.id }).populate('user')
         .then(result => {
             if (result) {
+                temp = result;
+                Rsvp.find({ user: req.session.user.id }).populate('event').then(result => {
 
-                res.render('./connections/SavedConnections', { data: result, title: 'Saved Connections' });
+                    const rsvpData = (result.filter(x => x.user == req.session.user.id));
+                    // console.log(rsvpData, 'karim')
+
+                    // var madeConnections = (result.map(x => console.log(x.user)));
+                    // console.log(req.session.user.id, 'reza')
+
+
+
+
+                    // console.log(result, 'saved');
+                    res.render('./connections/SavedConnections', { data: temp, rsvpData: rsvpData, title: 'Saved Connections' });
+                }).catch(err => {
+                    res.render('./connections/SavedConnections', { data: temp, title: 'Saved Connections' });
+
+                })
+
+                // var madeConnections = (result.filter(x => x.event.user === req.session.user.id));
+                // console.log(madeConnections, 'made connections');
+                // res.render('./connections/SavedConnections', { data: result, title: 'Saved Connections' });
             } else {
                 res.render('./connections/SavedConnections', { title: 'Saved Connections' })
             }

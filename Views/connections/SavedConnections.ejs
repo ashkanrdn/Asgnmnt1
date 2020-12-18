@@ -43,6 +43,8 @@
 
                                                     <li> <button class="maybe" type="submit" formmethod="GET" formaction="/connections/connection/<%= event._id%>/update">Edit</button> </li>
 
+
+
                                                     <li> <button class="no" type="submit" formmethod="POST" formaction="/connections/connection/<%= event._id%>?_method=DELETE">Delete</button> </li>
 
 
@@ -62,19 +64,48 @@
                                         <th>Category</th>
                                         <th>Going?</th>
                                         <th>Settings</th>
+
                                     </tr>
-                                    <tr>
-                                        <td>Art Introduction</td>
-                                        <td>WORKSHOPS</td>
-                                        <td><button class="going">yes</button></td>
-                                        <td> <a class="update" href="/connections">UPDATE</a> <a class="delete" href="/connections/SavedConnections">DELETE</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Contemprory Art</td>
-                                        <td>LECTURES</td>
-                                        <td><button class="going">yes</button></td>
-                                        <td> <a class="update" href="/connections">UPDATE</a> <a class="delete" href="/connections/SavedConnections">DELETE</a></td>
-                                    </tr>
+
+                                    <% if (rsvpData !== null){ %>
+                                        <% rsvpData.forEach(event=>{ %>
+
+                                            <tr>
+                                                <td>
+                                                    <a class='savedEvent' href="/connections/connection/<%=event.event._id%>">
+                                                        <%=event.event.conTitle  %>
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <%= event.event.conTopic %>
+                                                </td>
+                                                <td>
+                                                    <button class="<%= event.going %>" type="submit" formmethod="GET" formaction="/connections/connection/<%= event.event._id%>"><%= event.going %> </button>
+                                                </td>
+
+                                                <td>
+                                                    <form class='specialForm'>
+
+
+                                                        <button class='no' type="submit" formmethod="POST" formaction="/connections/connection/<%= event.event._id%>/rsvp" name="rsvp" value="No">Delete</button>
+                                                        <button class='maybe' type="submit" formmethod="GET" formaction="/connections/connection/<%= event.event._id%>">Update</button>
+
+
+
+                                                    </form>
+                                                </td>
+
+                                            </tr>
+
+
+                                            <% }) %>
+
+
+                                                <%}else{%>
+                                                    <h1>You have not responded to any events yet!</h1>
+                                                    <% } %>
+
+
                                 </table>
                             </section>
                 </section>

@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const validateEvent = require('../middlewares/validator').validateEvent;
+const validateRSVP = require('../middlewares/validator').validateRSVP;
 const { isLoggedIn, isLoggedOut } = require('../controllers/authController');
 const connectionController = require('../controllers/ConnectionController');
 
@@ -27,9 +28,15 @@ router.post('/NewConnections', isLoggedIn, validateEvent, connectionController.c
 
 router.get('/connection/:id/update', isLoggedIn, connectionController.getConnectionUpdate);
 
+// create rsvp
+router.post('/connection/:id/rsvp', isLoggedIn, validateRSVP, connectionController.createRsvp);
+
 // updateRestaurant
 
 router.put('/connection/:id', isLoggedIn, validateEvent, connectionController.updateConnection);
+
+
+
 
 // deleteRestaurant
 router.delete('/connection/:id', isLoggedIn, connectionController.deleteConnection);
